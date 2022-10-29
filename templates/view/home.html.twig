@@ -1,0 +1,134 @@
+{% extends 'base.html.twig' %}
+{% block title %}Acceuil{% endblock %}
+{% block body %}
+<div class="container">
+	<div class="row justify-content-center text-center m-4">
+					<h1 class="display-4">Votre plateforme en ligne</h1>
+					<p class="lead">À votre disposition !</p>
+	</div>
+
+	<div class="row justify-content-evenly bg-light rounded-4">
+		<h2>Partenaires:</h2>
+			{% for partner in partners %}
+				<div class="card text-white bg-info col-11 col-lg-5 col-xl-3 my-4 ms-1 text-center">
+					<div class="card-header">{{partner.name}}</div>
+					<div class="card-body">
+						<p class="card-text">{{partner.username.email}}</p>
+						<p class="card-text">Numéro téléphone:
+							{{partner.username.phone}}
+						</p>
+						<p class="card-text">{{partner.username.description}}</p>
+						<div class="form-check form-switch card-text">
+							{% if partner.active == 1 %}
+								<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="" onclick="return false;">
+							{% else %}
+								<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" onclick="return false;">
+							{% endif %}
+							<label class="form-check-label" for="flexSwitchCheckChecked">Actif</label>
+						</div>
+						<div class="form-check form-switch card-text">
+							{% if partner.features.VendreBoisson == 1 %}
+								<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="" onclick="return false;">
+							{% else %}
+								<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" onclick="return false;">
+							{% endif %}
+							<label class="form-check-label" for="flexSwitchCheckChecked">Vendre Boisson</label>
+						</div>
+
+						<div class="form-check form-switch card-text">
+							{% if partner.features.GererPlanning == 1 %}
+								<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="" onclick="return false;">
+							{% else %}
+								<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" onclick="return false;">
+							{% endif %}
+							<label class="form-check-label" for="flexSwitchCheckChecked">Gerer Planning</label>
+						</div>
+
+						<div class="form-check form-switch card-text">
+							{% if partner.features.EnvoyerNewsletter == 1 %}
+								<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="" onclick="return false;">
+							{% else %}
+								<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" onclick="return false;">
+							{% endif %}
+							<label class="form-check-label" for="flexSwitchCheckChecked">Envoyer Newsletter</label>
+						</div>
+						<a class="btn btn-outline-secondary text-white" href="{{path('app_view_partner', {'id':partner.id})}} ">
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewbox="0 0 16 16">
+								<path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+								<path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+							</svg>
+						</a>
+					</div>
+				</div>
+
+			{% endfor %}
+			<div>
+			<a href="{{path('app_partners')}}" class="btn btn-primary mb-4 me-5 float-end">Voir plus ...</a></div>
+		
+	</div>
+	<hr class="my-4">
+	
+	<div class="row justify-content-evenly bg-light rounded-4">
+		<h2>Structure:</h2>
+			{% for structure in structures %}
+				<div class="card text-white bg-info col-11 col-lg-5 col-xl-3 my-4 ms-1 text-center">
+					<div class="card-header">{{structure.adress}}</div>
+					<div class="card-body">
+						<p class="card-text">{{structure.username.email}}</p>
+						<p class="card-text">Numéro téléphone:
+							{{structure.username.phone}}
+						</p>
+						<p class="card-text">{{structure.username.description}}</p>
+						<div class="form-check form-switch card-text">
+							{% if structure.active == 1 %}
+								<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="" onclick="return false;">
+							{% else %}
+								<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" onclick="return false;">
+							{% endif %}
+							<label class="form-check-label" for="flexSwitchCheckChecked">Actif</label>
+						</div>
+						<div class="form-check form-switch card-text">
+							{% if structure.features.VendreBoisson == 1 %}
+								<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="" onclick="return false;">
+							{% else %}
+								<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" onclick="return false;">
+							{% endif %}
+							<label class="form-check-label" for="flexSwitchCheckChecked">Vendre Boisson</label>
+						</div>
+
+						<div class="form-check form-switch card-text">
+							{% if structure.features.GererPlanning == 1 %}
+								<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="" onclick="return false;">
+							{% else %}
+								<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" onclick="return false;">
+							{% endif %}
+							<label class="form-check-label" for="flexSwitchCheckChecked">Gerer Planning</label>
+						</div>
+
+						<div class="form-check form-switch card-text">
+							{% if structure.features.EnvoyerNewsletter == 1 %}
+								<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="" onclick="return false;">
+							{% else %}
+								<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" onclick="return false;">
+							{% endif %}
+							<label class="form-check-label" for="flexSwitchCheckChecked">Envoyer Newsletter</label>
+						</div>
+						<a class="btn btn-outline-secondary text-white" href="{{path('app_view_structure', {'id':structure.id})}} ">
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewbox="0 0 16 16">
+								<path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+								<path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+							</svg>
+						</a>
+					</div>
+				</div>
+
+			{% endfor %}
+			<div>
+			<a href="{{path('app_structures')}}" class="btn btn-primary mb-4 me-5 float-end">Voir plus ...</a></div>
+		</div>
+	</div>
+</div>
+	
+{% endblock %}
+
+

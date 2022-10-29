@@ -39,6 +39,13 @@ class PartnerRepository extends ServiceEntityRepository
         }
     }
 
+    public function getThreePartner(){
+        $partner = $this->createQueryBuilder("p")
+        ->orderBy("p.id")
+        ->setMaxResults(3);
+        return $partner->getQuery()->getResult();
+    }
+
 //    /**
 //     * @return Partner[] Returns an array of Partner objects
 //     */

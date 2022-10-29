@@ -38,6 +38,12 @@ class StructureRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function getThreeStructure(){
+        $structure = $this->createQueryBuilder("p")
+        ->orderBy("p.id")
+        ->setMaxResults(3);
+        return $structure->getQuery()->getResult();
+    }
 
 //    /**
 //     * @return Structure[] Returns an array of Structure objects

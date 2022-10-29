@@ -33,13 +33,13 @@
 						<ul class="navbar-nav me-auto">
 
 							<li class="nav-item">
-								<a class="nav-link" href="{{path('app_partner')}} ">Listes Partenaires</a>
+								<a class="nav-link" href="{{path('app_partners')}} ">Listes Partenaires</a>
 							</li>
 							<li class="nav-item">
 								{% if app.user.structure %}
 									<a class="nav-link" href="{{path('app_view_structure', {id: app.user.structure.id})}}">Mon espace</a>
 								{% elseif app.user.partner %}
-									<a class="nav-link" href="{{path('app_partner', {id: app.user.partner.id})}}">Mon espace</a>
+									<a class="nav-link" href="{{path('app_partners', {id: app.user.partner.id})}}">Mon espace</a>
 								{% endif %}
 							</li>
 							<li class="nav-item">

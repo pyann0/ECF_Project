@@ -12,39 +12,24 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class ViewController extends AbstractController
 {
-
+    #[IsGranted('ROLE_USER')]
     #[Route('/', name: 'app_home')]
-    public function index(PartnerRepository $repoPartner, AuthenticationUtils $authenticationUtils): Response
+    public function home(PartnerRepository $repoPartner, StructureRepository $repoStructure): Response
     {
-        $partner = $repoPartner->findAll();
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
+        $partners = $repoPartner->getThreePartner();
+        $structures = $repoStructure->getThreeStructure();
 
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
-
-        return $this->render('view/login.html.twig', [
+        
+        return $this->render('view/home.html.twig', [
             'controller_name' => 'ViewController',
-            'last_username' => $lastUsername,
-            'error'         => $error,
+            'partners' => $partners,
+            'structures' => $structures
         ]);
     }
-    #[Route('/login', name: 'app_login', methods: ['GET'])]
-    public function login()
-    {
-        return $this->redirectToRoute('app_home');
-    }
-
-
-    #[Route('/logout', name: 'app_logout', methods: ['GET'])]
-    public function logout()
-    {
-        // controller can be blank: it will never be called!
-        throw new \Exception('Don\'t forget to activate logout in security.yaml');
-    }
+    
 
     #[IsGranted('ROLE_USER')]
-    #[Route('/partenaire', name: 'app_partner')]
+    #[Route('/partenaires', name: 'app_partners')]
     public function partner(PartnerRepository $repoPartner): Response
     {
         $partner = $repoPartner->findAll();
@@ -53,6 +38,19 @@ class ViewController extends AbstractController
         return $this->render('view/partner.html.twig', [
             'controller_name' => 'ViewController',
             'partners' => $partner
+        ]);
+    }
+    
+    #[IsGranted('ROLE_USER')]
+    #[Route('/structures', name: 'app_structures')]
+    public function structures(StructureRepository $repoStructure): Response
+    {
+        $structures = $repoStructure->findAll();
+
+
+        return $this->render('view/structure.html.twig', [
+            'controller_name' => 'ViewController',
+            'structures' => $structures
         ]);
     }
 
