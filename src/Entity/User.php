@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -18,6 +19,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\Length(
+        min: 2,
+        max: 254,
+        maxMessage: 'Entrez une adresse e-mail de moins de 254 caractères.',
+    )]
+    #[Assert\Email(
+        message: 'Veuillez entrer une adresse email correct !',
+    )]
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
@@ -27,12 +36,32 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      */
+    #[Assert\Length(
+        min: 8,
+        max: 180,
+        minMessage: 'Votre mot de passe est trop court',
+        maxMessage: 'Créez un mot de passe plus long',
+    )]
     #[ORM\Column]
     private ?string $password = null;
 
+    #[Assert\Length(
+        min: 4,
+        max: 60,
+        maxMessage: 'Votre numéro de téléphone est incorrect',
+    )]
+    #[Assert\Regex(
+        pattern: '/^((\+)33|0|0033)[1-9](\d{2}){4}$/ ',
+        message: 'Votre numéro est incorrect',
+    )]
     #[ORM\Column(length: 255)]
     private ?string $phone = null;
 
+    #[Assert\Length(
+        min: 0,
+        max: 255,
+        maxMessage: 'Votre description a dépassé la limite de caractère atteignable',
+    )]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 

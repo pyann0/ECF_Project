@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% form_theme formPartner 'bootstrap_5_layout.html.twig' %}
+
+{% block title %}Hello FormulaireController!
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<h1>Formulaire</h1>
+
+			{{form_start(formPartner)}}
+			{{form_row(formPartner.username.email)}}
+			{{form_row(formPartner.name)}}
+			{{form_row(formPartner.username.phone)}}
+			{% if editMode %}
+				{% else %}
+					{{form_row(formPartner.username.plainPassword)}}
+			{% endif %}
+			{{form_row(formPartner.username.description)}}
+
+			<div class="form-check form-switch">
+				{{form_row(formPartner.active)}}
+				{{form_row(formPartner.features)}}
+			</div>
+
+
+			<button class="btn btn-primary" type="submit">
+				{% if editMode %}
+					Modifier le partenaire
+				{% else %}
+					Créer le partenaire
+				{% endif %}
+			</button>
+			{{form_end(formPartner)}}
+		</div>
+	</div>
+
+{% endblock %}

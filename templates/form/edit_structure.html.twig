@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% form_theme formStructure 'bootstrap_5_layout.html.twig' %}
+
+{% block title %}Hello FormulaireController!
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<h1>Formulaire</h1>
+
+			{{form_start(formStructure)}}
+			{{form_row(formStructure.username.email)}}
+			{{form_row(formStructure.adress)}}
+			{{form_row(formStructure.username.phone)}}
+			{{form_row(formStructure.username.description)}}
+			<div class="form-check form-switch">
+				{{form_row(formStructure.active)}}
+				{{form_row(formStructure.features)}}
+			</div>
+
+
+			<button type="submit" class="btn btn-primary">Modifer le partenaire</button>
+			{{form_end(formStructure)}}
+		</div>
+	</div>
+
+{% endblock %}

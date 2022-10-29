@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+{% form_theme formStructure 'bootstrap_5_layout.html.twig' %}
+
+{% block title %}Hello FormulaireController!
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<h1>Formulaire Structure:</h1>
+
+			{{form_start(formStructure)}}
+			{{form_row(formStructure.username.email)}}
+			{{form_row(formStructure.adress)}}
+			{{form_row(formStructure.username.phone)}}
+			{{form_row(formStructure.username.plainPassword)}}
+			{{form_row(formStructure.username.description)}}
+			<div class="form-check form-switch">
+				{{form_row(formStructure.active)}}
+			</div>
+
+
+			<div class="form-check form-switch">
+				{% if partner.features.VendreBoisson == 1 %}
+					{{form_row(formStructure.features.vendre_boisson, {'attr':{'checked': true}})}}
+				{% else %}
+					{{form_row(formStructure.features.vendre_boisson)}}
+				{% endif %}
+			</div>
+
+			<div class="form-check form-switch">
+				{% if partner.features.GererPlanning == 1 %}
+					{{form_row(formStructure.features.gerer_planning, {'attr':{'checked': true}})}}
+				{% else %}
+					{{form_row(formStructure.features.gerer_planning)}}
+				{% endif %}
+			</div>
+
+			<div class="form-check form-switch">
+				{% if partner.features.envoyernewsletter == 1 %}
+					{{form_row(formStructure.features.envoyer_newsletter, {'attr':{'checked': true}})}}
+				{% else %}
+					{{form_row(formStructure.features.envoyer_newsletter)}}
+				{% endif %}
+			</div>
+
+
+			<button type="submit" class="btn btn-primary">Créer le partenaire</button>
+			{{form_end(formStructure)}}
+		</div>
+	</div>
+
+{% endblock %}

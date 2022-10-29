@@ -6,6 +6,7 @@ use App\Repository\PartnerRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PartnerRepository::class)]
 class Partner
@@ -19,10 +20,11 @@ class Partner
     private ?string $name = null;
 
     #[ORM\Column]
-    private ?int $active = null;
+    private ?bool $active = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\Valid]
     private ?Features $features = null;
 
     #[ORM\OneToOne(inversedBy: 'partner', cascade: ['persist', 'remove'])]
@@ -54,12 +56,12 @@ class Partner
         return $this;
     }
 
-    public function getActive(): ?int
+    public function getActive(): ?bool
     {
         return $this->active;
     }
 
-    public function setActive(int $active): self
+    public function setActive(bool $active): self
     {
         $this->active = $active;
 

@@ -17,7 +17,7 @@ class Structure
     private ?string $adress = null;
 
     #[ORM\Column]
-    private ?int $active = null;
+    private ?bool $active = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
@@ -48,12 +48,12 @@ class Structure
         return $this;
     }
 
-    public function getActive(): ?int
+    public function getActive(): ?bool
     {
         return $this->active;
     }
 
-    public function setActive(int $active): self
+    public function setActive(bool $active): self
     {
         $this->active = $active;
 
