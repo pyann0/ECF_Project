@@ -1,0 +1,148 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ViewController!
+{% endblock %}
+{% block body %}
+	<div class="container-fluid text-center">
+		<h1>Stucture :
+			{{structure.adress}}
+		</h1>
+		<div class="row justify-content-center">
+
+			<div class="card text-white bg-info mb-3 col-11 col-lg-8 mb-3 ms-1">
+
+				<div class="card-body">
+					<p class="card-text">{{structure.username.email}}</p>
+					<p class="card-text">Numéro téléphone:
+						{{structure.username.phone}}</p>
+					<p class="card-text">{{structure.username.description}}</p>
+
+					<div class="form-check form-switch card-text">
+						{% if structure.active == 1 %}
+							<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="" onclick="return false;">
+						{% else %}
+							<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" onclick="return false;">
+						{% endif %}
+						<label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
+					</div>
+
+					<div class="form-check form-switch card-text">
+						{% if structure.features.VendreBoisson == 1 %}
+							<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="" onclick="return false;">
+						{% else %}
+							<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" onclick="return false;">
+						{% endif %}
+						<label class="form-check-label" for="flexSwitchCheckChecked">Vendre Boisson</label>
+					</div>
+
+					<div class="form-check form-switch card-text">
+						{% if structure.features.GererPlanning == 1 %}
+							<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="" onclick="return false;">
+						{% else %}
+							<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" onclick="return false;">
+						{% endif %}
+						<label class="form-check-label" for="flexSwitchCheckChecked">Gerer Planning</label>
+					</div>
+
+					<div class="form-check form-switch card-text">
+						{% if structure.features.EnvoyerNewsletter == 1 %}
+							<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="" onclick="return false;">
+						{% else %}
+							<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" onclick="return false;">
+						{% endif %}
+						<label class="form-check-label" for="flexSwitchCheckChecked">Envoyer Newsletter</label>
+					</div>
+					{% if is_granted('ROLE_ADMIN') %}
+                    <a class="btn btn-outline-secondary text-white" href="{{path('app_edit_structure', {'id':structure.id})}} ">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewbox="0 0 16 16">
+									<path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+								</svg>
+							</a>
+						<button type="button" class="btn btn-danger text-white delete" data-bs-toggle="modal" data-bs-target="#exampleModal">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewbox="0 0 16 16">
+								<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+								<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+							</svg>
+							Supprimer la structure
+						</button>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+		<br>
+
+		<div class="row justify-content-center">
+			<h2>Page du partenaire:
+				{{structure.partner.name}}</h2>
+			<div class="card text-white bg-dark col-11 col-lg-8 mb-3 ms-1">
+
+				<div class="card-body">
+					<p class="card-text">{{structure.partner.username.email}}</p>
+					<p class="card-text">Numéro téléphone:
+						{{structure.partner.username.phone}}</p>
+					<p class="card-text">{{structure.partner.username.description}}</p>
+
+					<div class="form-check form-switch card-text">
+						{% if structure.partner.active == 1 %}
+							<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="" onclick="return false;">
+						{% else %}
+							<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" onclick="return false;">
+						{% endif %}
+						<label class="form-check-label" for="flexSwitchCheckChecked">Active</label>
+					</div>
+
+					<div class="form-check form-switch card-text">
+						{% if structure.partner.features.VendreBoisson == 1 %}
+							<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="" onclick="return false;">
+						{% else %}
+							<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" onclick="return false;">
+						{% endif %}
+						<label class="form-check-label" for="flexSwitchCheckChecked">Vendre Boisson</label>
+					</div>
+
+					<div class="form-check form-switch card-text">
+						{% if structure.partner.features.GererPlanning == 1 %}
+							<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="" onclick="return false;">
+						{% else %}
+							<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" onclick="return false;">
+						{% endif %}
+						<label class="form-check-label" for="flexSwitchCheckChecked">Gerer Planning</label>
+					</div>
+
+					<div class="form-check form-switch card-text">
+						{% if structure.partner.features.EnvoyerNewsletter == 1 %}
+							<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="" onclick="return false;">
+						{% else %}
+							<input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" onclick="return false;">
+						{% endif %}
+						<label class="form-check-label" for="flexSwitchCheckChecked">Envoyer Newsletter</label>
+					</div>
+					<a class="btn btn-primary text-white" href="{{path('app_view_partner', {'id':structure.partner.id})}} ">Voir page partenaire</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">Confirmation</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					Vous êtes sur le point de supprimer la structure
+																																								"{{structure.adress}}"
+					<br>
+					Voulez vous continuer ?
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+					<a href="{{path('app_delete_structure', {'id':structure.id})}}" class="btn btn-primary">Confirmer</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}

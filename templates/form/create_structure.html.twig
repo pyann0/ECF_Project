@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 {% form_theme formStructure 'bootstrap_5_layout.html.twig' %}
 
-{% block title %}Hello FormulaireController!
+{% block title %}Création Structure
 {% endblock %}
 
 {% block body %}
 	<div class="container">
 		<div class="row">
-			<h1>Formulaire Structure:</h1>
+			<h1>Création Structure:</h1>
 
 			{{form_start(formStructure)}}
 			{{form_row(formStructure.username.email)}}

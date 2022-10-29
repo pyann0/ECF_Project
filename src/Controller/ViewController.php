@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\PartnerRepository;
+use App\Repository\StructureRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,6 +41,70 @@ class ViewController extends AbstractController
     {
         // controller can be blank: it will never be called!
         throw new \Exception('Don\'t forget to activate logout in security.yaml');
+    }
+
+    #[IsGranted('ROLE_USER')]
+    #[Route('/partenaire', name: 'app_partner')]
+    public function partner(PartnerRepository $repoPartner): Response
+    {
+        $partner = $repoPartner->findAll();
+
+
+        return $this->render('view/partner.html.twig', [
+            'controller_name' => 'ViewController',
+            'partners' => $partner
+        ]);
+    }
+
+    #[IsGranted('ROLE_USER')]
+    #[Route('/partenaire/{id}', name: 'app_view_partner')]
+    public function viewPartner($id, PartnerRepository $repoPartner, StructureRepository $repoStructure): Response
+    {
+        $partner = $repoPartner->find($id);
+        $structures = $repoStructure->findBy(['partner' => $id]);
+            if (!$partner) {
+            throw $this->createNotFoundException('Cette page n\'existe pas');
+        } 
+
+        return $this->render('view/view_partner.html.twig', [
+            'controller_name' => 'ViewController',
+            'partner' => $partner,
+            'structures' => $structures
+
+        ]);
+    }
+
+    #[IsGranted('ROLE_USER')]
+    #[Route('/structure/{id}', name: 'app_view_structure')]
+    public function viewStructure($id, StructureRepository $repoStructure): Response
+    {
+        $structure = $repoStructure->find($id);
+        if (!$structure) {
+            throw $this->createNotFoundException('Cette page n\'existe pas');
+        }
+
+
+        return $this->render('view/view_structure.html.twig', [
+            'controller_name' => 'ViewController',
+            'structure' => $structure
+
+        ]);
+    }
+
+    #[IsGranted('ROLE_USER')]
+    #[Route('/recherche', name: 'app_search')]
+    public function search(StructureRepository $repoStructure, PartnerRepository $repoPartner): Response
+    {
+        $structures = $repoStructure->findAll();
+        $partners = $repoPartner->findAll();
+
+
+        return $this->render('view/search.html.twig', [
+            'controller_name' => 'ViewController',
+            'structures' => $structures,
+            'partners' => $partners,
+
+        ]);
     }
 
     

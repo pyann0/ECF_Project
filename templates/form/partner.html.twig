@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 {% form_theme formPartner 'bootstrap_5_layout.html.twig' %}
 
-{% block title %}Hello FormulaireController!
+{% block title %}Création Partenaire
 {% endblock %}
 
 {% block body %}
 	<div class="container">
 		<div class="row">
-			<h1>Formulaire</h1>
+			<h1>Création Partenaire</h1>
 
 			{{form_start(formPartner)}}
 			{{form_row(formPartner.username.email)}}
