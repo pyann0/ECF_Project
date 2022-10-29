@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% form_theme registrationForm 'bootstrap_5_layout.html.twig' %}
+
+{% block title %}Register
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<h1>Créer Administrateur</h1>
+
+			{{ form_start(registrationForm) }}
+			{{ form_row(registrationForm.email) }}
+			{{ form_row(registrationForm.phone) }}
+			{{ form_row(registrationForm.plainPassword) }}
+			{{ form_row(registrationForm.description) }}
+
+			<button type="submit" class="btn btn-primary">Créer administrateur</button>
+			{{ form_end(registrationForm) }}
+		</div>
+	</div>
+{% endblock %}

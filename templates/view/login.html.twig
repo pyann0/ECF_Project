@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	{% if is_granted('ROLE_USER') %}
+		<div class="container">
+			<div class="row justify-content-start">
+				<h1 class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
+				<div class="col">
+					<p class="fs-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam nemo vitae sed culpa? Praesentium, possimus repudiandae voluptate temporibus pariatur aliquam ratione nihil quos earum animi voluptatibus deleniti alias a molestias!</p>
+				</div>
+
+			</div>
+		</div>
+
+
+	{% else %}
+		<div class="container text-center">
+			<div class="row justify-content-center">
+				<div class="jumbotron m-4 bg-light col-12 col-md-10 col-xl-8 col-xl-5 mb-3">
+					<h1 class="display-4">Bienvenue sur notre franchise!</h1>
+					<p class="lead">Connecter vous ci dessous pour accèder à la platforme !</p>
+					<hr class="my-4">
+					{% if error %}
+						<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+					{% endif %}
+					<div class="w-100 m-auto">
+						<form action="{{ path('app_login') }}" method="post">
+							<div class="form-group">
+								<label for="form-label" class="form-label">E-mail</label>
+								<input class="form-control form-control-lg" type="text" id="username" name="_username" value="{{ last_username }}"/>
+
+							</div>
+
+							<div class="form-group">
+								<label class="form-label" for="form-label">Mot de passe</label>
+								<input type="password" id="password" name="_password" class="form-control form-control-lg"/>
+							</div>
+							<br>
+
+							{# If you want to control the URL the user is redirected to on success
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																						        <input type="hidden" name="_target_path" value="/account"/> #}
+
+							<button type="submit" class="btn btn-primary btn-lg">Se Connecter</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+{% endblock %}
