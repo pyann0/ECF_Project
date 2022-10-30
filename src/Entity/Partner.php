@@ -16,6 +16,11 @@ class Partner
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\Length(
+        min: 2,
+        max: 80,
+        maxMessage: 'Vous avez dépassé le nombre de caractère atteignable',
+    )]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
@@ -25,10 +30,12 @@ class Partner
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     #[Assert\Valid]
+    #[Assert\Valid]
     private ?Features $features = null;
 
     #[ORM\OneToOne(inversedBy: 'partner', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\Valid]
     private ?User $username = null;
 
     #[ORM\OneToMany(mappedBy: 'partner', targetEntity: Structure::class, orphanRemoval: true)]

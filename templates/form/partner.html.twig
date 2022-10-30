@@ -1,13 +1,22 @@
 {% extends 'base.html.twig' %}
 {% form_theme formPartner 'bootstrap_5_layout.html.twig' %}
 
-{% block title %}Création Partenaire
+{% block title %}{% if editMode %}
+					Modification partenaire
+				{% else %}
+					Création Partenaire
+				{% endif %}
 {% endblock %}
 
 {% block body %}
 	<div class="container">
 		<div class="row">
-			<h1>Création Partenaire</h1>
+		
+			<h1>{% if editMode %}
+					Modification partenaire
+				{% else %}
+					Création Partenaire
+				{% endif %}</h1>
 
 			{{form_start(formPartner)}}
 			{{form_row(formPartner.username.email)}}

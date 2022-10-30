@@ -48,7 +48,7 @@ class ViewController extends AbstractController
         $structures = $repoStructure->findAll();
 
 
-        return $this->render('view/structure.html.twig', [
+        return $this->render('view/structures.html.twig', [
             'controller_name' => 'ViewController',
             'structures' => $structures
         ]);

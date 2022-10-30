@@ -52,7 +52,7 @@ class FormController extends AbstractController
 
             $manager->persist($partner);
             $manager->flush();
-            return $this->redirectToRoute('app_login');
+            return $this->redirectToRoute('app_partners');
         }
 
         return $this->render('form/partner.html.twig', [
@@ -89,7 +89,7 @@ class FormController extends AbstractController
 
             $manager->persist($structure);
             $manager->flush();
-            return $this->redirectToRoute('app_login');
+            return $this->redirectToRoute('app_structures');
         }
 
         return $this->render('form/create_structure.html.twig', [
@@ -112,7 +112,7 @@ class FormController extends AbstractController
 
             $manager->persist($structure);
             $manager->flush();
-            return $this->redirectToRoute('app_login');
+            return $this->redirectToRoute('app_structures');
         }
 
         return $this->render('form/edit_structure.html.twig', [

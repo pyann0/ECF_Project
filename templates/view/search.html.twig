@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Page Recherche
+{% block title %}Recherche
 {% endblock %}
 
 
@@ -33,7 +33,7 @@
 			</p>
 			<p>{{partner.username.description}}
 			</p>
-			<button>
+			<button class="btn btn-primary">
 				<a style="text-decoration: none;" href="{{path('app_view_partner', {'id':partner.id})}} ">Voir page partenaire</a>
 			</button>
 		</div>
@@ -50,7 +50,7 @@
 			</p>
 			<p>{{structure.username.description}}
 			</p>
-			<button>
+			<button class="btn btn-primary">
 				<a style="text-decoration: none;" href="{{path('app_view_structure', {'id':structure.id})}} ">Voir page structure</a>
 			</button>
 		</div>

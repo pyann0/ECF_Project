@@ -22,7 +22,7 @@ class DeleteController extends AbstractController
         $manager->flush();
 
 
-        return $this->redirectToRoute('partner');
+        return $this->redirectToRoute('app_structures');
     }
 
 
@@ -37,6 +37,6 @@ class DeleteController extends AbstractController
         $manager->flush();
 
 
-        return $this->redirectToRoute('app_partner');
+        return $this->redirectToRoute('app_partners');
     }
 }

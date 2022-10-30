@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\StructureRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: StructureRepository::class)]
 class Structure
@@ -13,6 +14,11 @@ class Structure
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\Length(
+        min: 2,
+        max: 80,
+        maxMessage: 'Vous avez dépassé le nombre de caractère atteignable',
+    )]
     #[ORM\Column(length: 255)]
     private ?string $adress = null;
 
@@ -21,6 +27,7 @@ class Structure
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\Valid]
     private ?Features $Features = null;
 
     #[ORM\ManyToOne(inversedBy: 'structures')]
@@ -29,6 +36,7 @@ class Structure
 
     #[ORM\OneToOne(inversedBy: 'structure', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
+    #[Assert\Valid]
     private ?User $username = null;
 
     public function getId(): ?int
