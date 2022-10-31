@@ -62,7 +62,7 @@ email: partenaire1@partenaire.com
 mdp: motdepassepartenaire
 
 structure account:
-email: structure$j@partenaire$i.com
+email: structure1@partenaire1.com
 mdp: motdepassestructure
 
 you can replace the 1 in the email address with a number between 1 and 6
